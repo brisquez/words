@@ -28,7 +28,7 @@ for i in xrange(10):
     # Computing the new line given the operators:
     line = new_line(offset=offset, reverse=reverse)
 
-    print line, 'o%02i' % offset
+    print line, 'o%02i' % offset, 'r%01i' % reverse
 
     # Search for words:
     for char_position in xrange(len(line)):
