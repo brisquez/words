@@ -10,9 +10,12 @@ alphabet = string.lowercase
 
 words = [word.strip() for word in open('/usr/share/dict/words').readlines()]
 
-def new_line(offset=0):
+def new_line(offset=0, reverse=False):
     line = alphabet
-    line = line[offset:] + line[:offset]
+    if offset:
+        line = line[offset:] + line[:offset]
+    if reverse:
+        line = ''.join(list(reversed(line)))
     return line
 
 # Grid contains the previous lines
@@ -21,8 +24,9 @@ grid = []
 for i in xrange(10):
     # Genetaring operator values:
     offset = random.randrange(len(alphabet))
+    reverse = random.randrange(2) > 0
     # Computing the new line given the operators:
-    line = new_line(offset=offset)
+    line = new_line(offset=offset, reverse=reverse)
 
     print line, 'o%02i' % offset
 
