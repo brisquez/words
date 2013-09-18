@@ -24,17 +24,35 @@ for i in xrange(10):
     # Computing the new line given the operators:
     line = new_line(offset=offset)
 
+    print line, 'o%02i' % offset
+
     # Search for words:
     for char_position in xrange(len(line)):
         char = line[char_position]
 
+        # Searching horizontally words ending in current char:
         for start_position in xrange(char_position):
             word = line[start_position:char_position+1]
             #print 'word=', word
-            if word in words:
-                print 'MATCH', word
+            #if word in words:
+                #print 'MATCH', word
+
+        # Searching vertically words ending in current char:
+        # (Maximum 10 letters long)
+        vertical_line = ''.join(prev[char_position] for prev in grid[-10:]) \
+                      + char
+        #print 'VL', vertical_line
+        for start_position in xrange(len(vertical_line)): 
+            word = vertical_line[start_position:]
+            if len(word) > 1:
+                #print 'v_word=', word
+                if word in words:
+                    print 'V_MATCH', word
 
     # Printing line
-    print line, 'o%02i' % offset
+    #print line, 'o%02i' % offset
     # Saving line to the grid:
     grid.append(line)
+
+for line in grid:
+    print line
