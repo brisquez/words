@@ -15,6 +15,21 @@ def new_line(offset=0):
     line = line[offset:] + line[:offset]
     return line
 
+# Grid contains the previous lines
+grid = []
+
 for i in xrange(10):
+    # Genetaring operator values:
     offset = random.randrange(len(alphabet))
-    print new_line(offset=offset), 'o%02i' % offset
+    # Computing the new line given the operators:
+    line = new_line(offset=offset)
+
+    # Search for words:
+    for char in line:
+        # TODO
+        pass 
+
+    # Printing line
+    print line, 'o%02i' % offset
+    # Saving line to the grid:
+    grid.append(line)
