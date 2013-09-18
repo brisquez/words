@@ -25,9 +25,14 @@ for i in xrange(10):
     line = new_line(offset=offset)
 
     # Search for words:
-    for char in line:
-        # TODO
-        pass 
+    for char_position in xrange(len(line)):
+        char = line[char_position]
+
+        for start_position in xrange(char_position):
+            word = line[start_position:char_position+1]
+            #print 'word=', word
+            if word in words:
+                print 'MATCH', word
 
     # Printing line
     print line, 'o%02i' % offset
