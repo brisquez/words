@@ -23,7 +23,7 @@ grid = []
 # Matches coordinates, per line:
 matches = []
 
-for i in xrange(10):
+for i in xrange(30):
     line_matches = []
 
     # Genetaring operator values:
@@ -42,9 +42,10 @@ for i in xrange(10):
         for start_position in xrange(char_position):
             word = line[start_position:char_position+1]
             #print 'word=', word
-            if word in words:
-                line_matches.append(('h', char_position, word))
-                print 'MATCH', word
+            if len(word) > 2:
+                if word in words:
+                    line_matches.append(('h', char_position, word))
+                    print 'MATCH', word
 
         # Searching vertically words ending in current char:
         # (Maximum 10 letters long)
@@ -53,7 +54,7 @@ for i in xrange(10):
         #print 'VL', vertical_line
         for start_position in xrange(len(vertical_line)): 
             word = vertical_line[start_position:]
-            if len(word) > 1:
+            if len(word) > 2:
                 #print 'v_word=', word
                 if word in words:
                     line_matches.append(('v', char_position, word))
