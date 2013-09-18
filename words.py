@@ -20,8 +20,12 @@ def new_line(offset=0, reverse=False):
 
 # Grid contains the previous lines
 grid = []
+# Matches coordinates, per line:
+matches = []
 
 for i in xrange(10):
+    line_matches = []
+
     # Genetaring operator values:
     offset = random.randrange(len(alphabet))
     reverse = random.randrange(2) > 0
@@ -38,8 +42,9 @@ for i in xrange(10):
         for start_position in xrange(char_position):
             word = line[start_position:char_position+1]
             #print 'word=', word
-            #if word in words:
-                #print 'MATCH', word
+            if word in words:
+                line_matches.append(('h', char_position, word))
+                print 'MATCH', word
 
         # Searching vertically words ending in current char:
         # (Maximum 10 letters long)
@@ -51,12 +56,16 @@ for i in xrange(10):
             if len(word) > 1:
                 #print 'v_word=', word
                 if word in words:
+                    line_matches.append(('v', char_position, word))
                     print 'V_MATCH', word
 
     # Printing line
     #print line, 'o%02i' % offset
     # Saving line to the grid:
     grid.append(line)
+    matches.append(line_matches)
 
 for line in grid:
     print line
+
+print matches
